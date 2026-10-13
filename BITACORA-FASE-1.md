@@ -163,6 +163,13 @@ Las etiquetas de lo que es ataque se subieron a git **antes** de mirar las alert
 
 Toda la Fase 1 se reproduce desde cero con un solo comando (`./centinela.sh fase1`).
 
+**Ejecuciones oficiales (13 de octubre de 2026),** con el código ya revisado (commit `7f9856a`):
+`20261013T165150Z-07yxYu` (Fase 1) y `validacion-20261013T165557Z-9TTeSD` (validación externa). Antes de
+ejecutarlas, Codex hizo una revisión final que pidió endurecer cómo se leen y verifican los datos: no seguir
+enlaces, comprobar las huellas y fijar la plataforma de las imágenes. Con esos cambios, **todas las cifras
+de esta bitácora se repiten exactamente**, y las alertas y los incidentes son idénticos byte a byte a los de
+septiembre.
+
 ## Límites (lo que este laboratorio no demuestra)
 
 - **Muestra pequeña:** 3 escenarios de desarrollo y 10 de validación. La única prueba de la regla propia
