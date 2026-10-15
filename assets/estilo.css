@@ -7,9 +7,9 @@
   --superficie-2: #eef2f0;
   --texto: #0f1714;
   --texto-2: #46534e;
-  --texto-3: #66736e;
+  --texto-3: #5f6c67;
   --linea: #d8e0dc;
-  --acento: #00805a;          /* esmeralda oscurecido para contraste AA sobre claro */
+  --acento: #007854;          /* esmeralda oscurecido: AA también sobre --acento-suave */
   --acento-suave: #e3f4ec;
   --peligro: #a3341f;
   --peligro-suave: #fbeae6;
