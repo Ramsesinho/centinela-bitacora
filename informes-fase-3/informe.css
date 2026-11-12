@@ -1,0 +1,225 @@
+/* Centinela, informes de la Fase 3. Archivo fijo del repo: su huella esta en centinela/render.py (CSS_SHA256) y el render
+   se niega a usarlo si cambia. Nada aqui oculta, mueve ni superpone texto: una prueba lo exige (docs/fase-3.md, regla 7).
+   Identidad: la de la pagina de portafolio (centinela-bitacora/assets/estilo.css): sus colores con el contraste corregido,
+   un radio de 10 px, claro y oscuro automaticos. Toda variable es un #rrggbb opaco (por eso el radio y las familias de
+   letra van escritos en cada regla). El contraste de cada elemento, medido
+   con herramientas/contraste_informe.py, esta en docs/evidencia/contraste-informe-tecnico.md. */
+
+:root {
+  --fondo: #f6f8f7;
+  --superficie: #ffffff;
+  --superficie-2: #eef2f0;
+  --texto: #0f1714;
+  --texto-2: #46534e;
+  --linea: #d8e0dc;
+  --acento: #007854;
+  --peligro: #a3341f;
+  --registro-fondo: #fbeae6;
+  --registro-borde: #a3341f;
+  --modelo-fondo: #e3f4ec;
+  --banda-fondo: #a3341f;
+  --banda-texto: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #08100d;
+    --superficie: #0e1814;
+    --superficie-2: #13201b;
+    --texto: #e3f2ea;
+    --texto-2: #a9bbb2;
+    --linea: #22332b;
+    --acento: #2fd99c;
+    --peligro: #f08a72;
+    --registro-fondo: #2c1612;
+    --registro-borde: #f08a72;
+    --modelo-fondo: #0f2a20;
+    --banda-fondo: #f08a72;
+    --banda-texto: #08100d;
+  }
+}
+
+html { background: var(--fondo); color: var(--texto); }
+body {
+  margin: 0 auto;
+  max-width: 72rem;
+  padding: 0 1rem 3rem;
+  font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
+  background: var(--fondo);
+  color: var(--texto);
+}
+::selection { background: var(--superficie-2); color: var(--texto); }
+a { color: var(--acento); text-underline-offset: 0.18em; }
+:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; border-radius: 10px; }
+
+h1 { font-size: 1.6rem; line-height: 1.2; margin: 0 0 1rem; letter-spacing: -0.01em; }
+h2 { font-size: 1.3rem; line-height: 1.25; margin: 0 0 0.75rem; letter-spacing: -0.01em; }
+h3 { font-size: 1rem; line-height: 1.3; margin: 1.75rem 0 0.5rem; }
+
+/* Banda de borrador: arriba y abajo de cada pagina. */
+.banda-borrador {
+  margin: 1rem 0;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--banda-fondo);
+  border-radius: 10px;
+  background: var(--banda-fondo);
+  color: var(--banda-texto);
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Cabecera, aviso, indice, incidentes: superficies con el mismo borde y radio. */
+.cabecera, .indice, .incidente {
+  margin: 1.25rem 0;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid var(--linea);
+  border-radius: 10px;
+  background: var(--superficie);
+}
+.datos { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1.25rem; margin: 0; }
+.datos dt, .proceso dt, thead th, .ficha th { color: var(--texto-2); }
+.datos dd { margin: 0; overflow-wrap: anywhere; font-family: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, monospace; font-size: 0.85rem; }
+
+.aviso {
+  margin: 1.25rem 0;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--linea);
+  border-radius: 10px;
+  background: var(--superficie-2);
+  font-weight: 600;
+  max-width: 75ch;
+}
+.nota, .limites, .descartada, .t-estado, .recorte, .vacio { color: var(--texto-2); }
+.recorte { font-size: 0.85em; }
+
+.indice ol { margin: 0; padding-left: 1.5rem; }
+.indice li { margin: 0.1rem 0; }
+.indice a { display: inline-block; padding: 0.55rem 0.35rem; font-weight: 600; }
+
+/* Tablas: dentro de un contenedor que se desplaza en horizontal; en movil no se aplastan. */
+.tabla { overflow-x: auto; margin: 0.4rem 0 1rem; border: 1px solid var(--linea); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+th, td { padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--linea); text-align: left; vertical-align: top; overflow-wrap: break-word; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+.ficha td, .r-id, .c-evento, .c-proceso, .c-alertas { overflow-wrap: anywhere; }
+thead th { background: var(--superficie-2); font-weight: 600; white-space: nowrap; }
+.ficha th { width: 13rem; font-weight: 500; }
+.reglas { min-width: 44rem; }
+.cronologia { min-width: 48rem; }
+td ul, .h-citas { margin: 0; padding-left: 1.1rem; }
+.f-huella, .r-id, .c-eventid, .r-alertas { font-family: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, monospace; font-size: 0.85rem; }
+
+/* Arbol de procesos: cada nivel con una linea guia. */
+.arbol, .arbol ul { margin: 0; padding-left: 1.1rem; list-style: none; }
+.arbol ul { border-left: 1px solid var(--linea); margin-left: 0.4rem; }
+.proceso { margin: 0.6rem 0; }
+.proceso dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.15rem 0.85rem; margin: 0; }
+.proceso dt { font-size: 0.88rem; }
+.proceso dd { margin: 0; overflow-wrap: anywhere; }
+
+.alertas, .eventos { margin: 0; padding-left: 1.75rem; font-size: 0.9rem; }
+.alertas li, .eventos li { margin: 0.2rem 0; }
+
+/* Texto de los registros: el UNICO elemento con borde discontinuo y este fondo. El rotulo va fuera del bloque; en tablas
+   y en el arbol de procesos, una sola vez en la cabecera de la columna o del grupo (docs/fase-3.md, regla 4). Cada bloque
+   es un solo rectangulo (inline-block, nunca mas ancho que su celda) y el texto se corta por dentro. */
+.registro { overflow-wrap: anywhere; }
+.rotulo-registro { margin-right: 0.3rem; color: var(--peligro); font-size: 0.75rem; font-weight: 700; }
+th .rotulo-registro { display: block; }
+.rotulo-grupo { margin: 0 0 0.4rem; font-size: 0.85rem; }
+.atacante {
+  display: inline-block;
+  box-sizing: border-box;
+  max-width: 100%;
+  vertical-align: top;
+  padding: 0.1rem 0.4rem;
+  border: 1px dashed var(--registro-borde);
+  border-radius: 10px;
+  background: var(--registro-fondo);
+  color: var(--texto);
+  font-family: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: 0.86em;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+
+/* Texto del modelo: su propio bloque, borde continuo de acento, distinto del de los registros. */
+.hipotesis { margin: 1rem 0 1.25rem; }
+.h-rotulo { margin: 0.75rem 0 0.25rem; }
+.rotulo-modelo { margin: 0.25rem 0; color: var(--acento); font-size: 0.8rem; font-weight: 700; }
+.modelo {
+  margin: 0.3rem 0 0.6rem;
+  padding: 0.7rem 0.9rem;
+  border: 2px solid var(--acento);
+  border-radius: 10px;
+  background: var(--modelo-fondo);
+  color: var(--texto);
+}
+.h-texto { white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Menlo, Consolas, monospace; font-size: 0.88rem; }
+
+.limites { max-width: 75ch; }
+footer { margin-top: 2rem; }
+
+@media (max-width: 640px) {
+  body { padding: 0 0.75rem 2rem; }
+  .cabecera, .indice, .incidente { padding: 1rem; }
+  .datos, .proceso dl { grid-template-columns: 1fr; gap: 0.1rem; }
+  .datos dt, .proceso dt { margin-top: 0.45rem; }
+  .ficha th { width: auto; }
+}
+
+/* Impresion: siempre colores claros, cada incidente en pagina nueva, y la banda sin depender del fondo (el navegador no
+   imprime fondos por defecto). */
+@media print {
+  :root {
+    --fondo: #ffffff;
+    --superficie: #ffffff;
+    --superficie-2: #eef2f0;
+    --texto: #0f1714;
+    --texto-2: #46534e;
+    --linea: #b9c4bf;
+    --acento: #007854;
+    --peligro: #a3341f;
+    --registro-fondo: #fbeae6;
+    --registro-borde: #a3341f;
+    --modelo-fondo: #e3f4ec;
+    --banda-fondo: #a3341f;
+    --banda-texto: #a3341f;
+  }
+  body { max-width: none; padding: 0; font-size: 10pt; }
+  .banda-borrador { background: var(--superficie); }
+  .cabecera, .indice, .incidente { border: 0; padding: 0; }
+  .incidente { break-before: page; }
+  .tabla { overflow-x: visible; }
+  .reglas, .cronologia { min-width: 0; }
+  a { color: var(--texto); }
+  tr, .proceso, .hipotesis { break-inside: avoid; }
+}
+
+/* Impresion del ejecutivo (clase en su body; el tecnico y la comparacion no la llevan): mas compacto para que la ejecucion
+   oficial quepa en una A4. Sin ocultar nada, letra de 10 pt y nada por debajo de 9,5 pt, sin tocar ningun color. Con mas
+   incidentes de los que caben, sigue en mas paginas (docs/fase-3.md, «Informe ejecutivo»). */
+@media print {
+  .ejecutivo { line-height: 1.3; }
+  .ejecutivo h1 { font-size: 15pt; margin: 0 0 0.3rem; }
+  .ejecutivo h2 { font-size: 12pt; margin: 0 0 0.2rem; }
+  .ejecutivo .banda-borrador { margin: 0 0 0.5rem; padding: 0.15rem 0.75rem; }
+  .ejecutivo .cabecera, .ejecutivo .indice { margin: 0 0 0.5rem; }
+  .ejecutivo .datos { gap: 0 1rem; }
+  .ejecutivo section { margin: 0 0 0.5rem; }
+  .ejecutivo p { margin: 0 0 0.25rem; }
+  .ejecutivo .indice li { margin: 0 0 0.4rem; }
+  .ejecutivo .aviso { margin: 0; padding: 0.3rem 0.75rem; max-width: none; }
+  .ejecutivo .limites { max-width: none; }
+  .ejecutivo .rotulo-registro, .ejecutivo .atacante, .ejecutivo .recorte { font-size: 9.5pt; }
+  .ejecutivo .atacante { padding: 0 0.3rem; }
+  .ejecutivo footer { margin-top: 0.5rem; }
+  .ejecutivo footer .banda-borrador { margin: 0; }
+}
+
+/* Papel A4 en los tres informes. */
+@page { size: A4; margin: 40pt; }
